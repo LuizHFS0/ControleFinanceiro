@@ -3,6 +3,7 @@ import customtkinter as ctk
 from utils.cores import CORES
 from views.dashboard_frame import DashboardFrame
 from views.transacoes_frame import TransacoesFrame
+from views.despesas_frame import DespesasFrame
 
 
 class App(ctk.CTk):
@@ -29,7 +30,7 @@ class App(ctk.CTk):
 
         # Registro dos frames disponíveis
         self.frames = {}
-        for FrameClass in (DashboardFrame, TransacoesFrame):
+        for FrameClass in (DashboardFrame, TransacoesFrame, DespesasFrame):
             frame = FrameClass(self.container, self.conn)
             self.frames[FrameClass.__name__] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -38,6 +39,7 @@ class App(ctk.CTk):
         btns = [
             ("Dashboard", 35, 100, "DashboardFrame"),
             ("Transações", 35, 150, "TransacoesFrame"),
+            ("Despesas", 35, 200, "DespesasFrame"),
         ]
 
         for nome, x, y, frame_key in btns:
