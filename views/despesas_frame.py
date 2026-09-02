@@ -83,7 +83,7 @@ class DespesasFrame(ctk.CTkFrame):
 
         # Frame Tabela Entradas
         frameTabelaEntradas = ctk.CTkFrame(frameFinal, corner_radius=10, fg_color=CORES["card"])
-        frameTabelaEntradas.pack(side="left", fill="both", expand=True, padx=(10, 5), pady=10)
+        frameTabelaEntradas.pack(side="left", fill="both", expand=True, padx=(7, 3), pady=7)
 
         # Tabela de Entradas
 

@@ -7,8 +7,15 @@
 - F03 - Editar/Excluir transações;
 - F04 - Relatório mensal: total de receitar, total de despesas, saldo, e gasto por categoria
 
+## Funcionalidades
+
+### F01 - Cadastrar transações
+
+- Colocar o tipo da transação, receita ou despesa
+
 ## Ferramentas Utilizadas
 
 - Visualização - CustomTkinter;
 - Regras de Negócios - Python;
 - Persistência - Sqlite3;
+
