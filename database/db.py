@@ -17,4 +17,6 @@ def criarTabelas(conn):
         data TEXT NOT NULL
     )""")
 
+    cursor.execute("""INSERT INTO transacoes (tipo, valor, categoria, descricao, data) VALUES (?, ?, ?, ?, ?)""", ('Despesa', 1000.00, 'Salário', 'Salário do mês de junho', '2024-06-01'))
+
     conn.commit()

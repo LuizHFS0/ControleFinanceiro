@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from utils.cores import CORES
+from dao.transacaoDAO import atualizarTabelaTransacoesDespesas, atualizarTabelaTransacoesReceita
 
 class TransacoesFrame(ctk.CTkFrame):
     def __init__(self, parent, conn):
@@ -95,24 +96,23 @@ class TransacoesFrame(ctk.CTkFrame):
 
         colunasEntradas = ("id", "tipo", "valor", "categoria", "data")
 
-        tabelaEntrada = ttk.Treeview(frameTabelaEntradas, columns=colunasEntradas, style="Custom.Treeview", show="headings")
+        self.tabelaEntrada = ttk.Treeview(frameTabelaEntradas, columns=colunasEntradas, style="Custom.Treeview", show="headings")
 
-        tabelaEntrada.heading("id", text="ID")
-        tabelaEntrada.heading("tipo", text="Tipo") 
-        tabelaEntrada.heading("valor", text="Valor")
-        tabelaEntrada.heading("categoria", text="Categoria")
-        tabelaEntrada.heading("data", text="Data")
+        self.tabelaEntrada.heading("id", text="ID")
+        self.tabelaEntrada.heading("tipo", text="Tipo") 
+        self.tabelaEntrada.heading("valor", text="Valor")
+        self.tabelaEntrada.heading("categoria", text="Categoria")
+        self.tabelaEntrada.heading("data", text="Data")
 
-        tabelaEntrada.column("id", width=40, anchor="center", stretch=True)
-        tabelaEntrada.column("tipo", width=90, anchor="center", stretch=True)
-        tabelaEntrada.column("valor", width=90, anchor="center", stretch=True)
-        tabelaEntrada.column("categoria", width=130, anchor="center", stretch=True)
-        tabelaEntrada.column("data", width=90, anchor="center", stretch=True)
+        self.tabelaEntrada.column("id", width=40, anchor="center", stretch=True)
+        self.tabelaEntrada.column("tipo", width=90, anchor="center", stretch=True)
+        self.tabelaEntrada.column("valor", width=90, anchor="center", stretch=True)
+        self.tabelaEntrada.column("categoria", width=130, anchor="center", stretch=True)
+        self.tabelaEntrada.column("data", width=90, anchor="center", stretch=True)
 
         # Colocar aqui a função que atualiza a tabela com os dados do banco de dados
 
-        tabelaEntrada.pack(pady=10, padx=10, fill="both", expand=True)
-        tabelaEntrada.insert("", "end", values=(1, "Entrada", "R$ 100,00", "Salário", "2024-06-01"))
+        self.tabelaEntrada.pack(pady=10, padx=10, fill="both", expand=True)
 
         # Frame Tabela Despesas
         frameTabelaDespesas = ctk.CTkFrame(frameFinal, corner_radius=10, fg_color=CORES["card"])
@@ -122,20 +122,21 @@ class TransacoesFrame(ctk.CTkFrame):
 
         colunasDespesa = ("id", "tipo", "valor", "categoria", "data")
         
-        tabelaDespesa = ttk.Treeview(frameTabelaDespesas, columns=colunasDespesa, style="Custom.Treeview", show="headings")
+        self.tabelaDespesa = ttk.Treeview(frameTabelaDespesas, columns=colunasDespesa, style="Custom.Treeview", show="headings")
 
-        tabelaDespesa.heading("id", text="ID")
-        tabelaDespesa.heading("tipo", text="Tipo") 
-        tabelaDespesa.heading("valor", text="Valor")
-        tabelaDespesa.heading("categoria", text="Categoria")
-        tabelaDespesa.heading("data", text="Data")
+        self.tabelaDespesa.heading("id", text="ID")
+        self.tabelaDespesa.heading("tipo", text="Tipo") 
+        self.tabelaDespesa.heading("valor", text="Valor")
+        self.tabelaDespesa.heading("categoria", text="Categoria")
+        self.tabelaDespesa.heading("data", text="Data")
 
-        tabelaDespesa.column("id", width=40, anchor="center", stretch=True)
-        tabelaDespesa.column("tipo", width=90, anchor="center", stretch=True)
-        tabelaDespesa.column("valor", width=90, anchor="center", stretch=True)
-        tabelaDespesa.column("categoria", width=130, anchor="center", stretch=True)
-        tabelaDespesa.column("data", width=90, anchor="center", stretch=True)
+        self.tabelaDespesa.column("id", width=40, anchor="center", stretch=True)
+        self.tabelaDespesa.column("tipo", width=90, anchor="center", stretch=True)
+        self.tabelaDespesa.column("valor", width=90, anchor="center", stretch=True)
+        self.tabelaDespesa.column("categoria", width=130, anchor="center", stretch=True)
+        self.tabelaDespesa.column("data", width=90, anchor="center", stretch=True)
 
-        # Colocar aqui a função que atualiza a tabela com os dados do banco de dados
+        atualizarTabelaTransacoesReceita(self, "")
+        atualizarTabelaTransacoesDespesas(self, "")
 
-        tabelaDespesa.pack(pady=10, padx=10, fill="both", expand=True)
+        self.tabelaDespesa.pack(pady=10, padx=10, fill="both", expand=True)
